@@ -1,20 +1,30 @@
-import React from 'react';
-import { useState } from 'react'
-import Bio from './components/publicView/bio';
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import ProtectedRoute from "./components/admin/protectedRoutes";
+import Login from "./components/auth/login";
+// import AdminDashboard from "./components/admin/dashboard";
+import PublicView from "./components/publicView";
+import "./App.css";
 
 function App() {
-  
-
   return (
     <>
-    <React.Fragment>
-      <Bio />
-    </React.Fragment>
-
-
+      <Router>
+        <Routes>
+          <Route path="/" element={<PublicView/>}/>
+          <Route path="/login" element={<Login />} />
+          {/* <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          /> */}
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
