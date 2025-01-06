@@ -5,6 +5,7 @@ import Login from "./components/auth/login";
 // import AdminDashboard from "./components/admin/dashboard";
 import PublicView from "./components/publicView";
 import "./App.css";
+import AdminDashboard from "./components/admin/dashboard";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PublicView/>}/>
           <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           {/* <Route
             path="/admin"
             element={

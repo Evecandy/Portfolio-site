@@ -27,5 +27,5 @@ const db = getFirestore(app);
   // console.log('db')
 
 
-
+export { db };
 export default db; //Export Firestore instance for use in other files

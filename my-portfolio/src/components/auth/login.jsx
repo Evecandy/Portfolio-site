@@ -26,14 +26,20 @@ const Login = () => {
       navigateToAdminDashboard();
     } catch (error) {
       console.error("Error signing in:", error);
-      alert('Signin error',error)
+
+
+      alert("Signin error", error);
     }
   };
 
   return (
     <div className="login-page">
       <h2>Admin Login</h2>
-      <form onSubmit={handleLogin}>
+      <form 
+        onSubmit={(e) => {
+            e.preventDefault(); // Prevent page reload
+            handleLogin(email, password); // Call with state values
+          }}>
         <input
           type="email"
           placeholder="Email"
@@ -48,7 +54,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button onClick={() => handleLogin()} type="submit">
+        <button type="submit">
           Login
         </button>
       </form>
