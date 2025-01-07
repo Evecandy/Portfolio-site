@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
-import { db } from '../../firebaseConfig';
+import  {db} from '../../firebaseConfig'
+import { doc, setDoc } from 'firebase/firestore';
 
 const SkillsEditor = () => {
   const [skills, setSkills] = useState('');
 
-  const handleSave = async () => {
-    await db.collection('portfolio').doc('skills').set({ content: skills });
-    alert('Skills updated successfully!');
-  };
+  const handleSave = async () => 
+    {
+        try {
+          const skillsRef = doc(db, 'portfolio', 'skills'); // Reference to the 'bio' document
+          await setDoc(skillsRef, { skill1: skills }); // Save the bio content
+          alert('Skills updated successfully!');
+        } catch (error) {
+          console.error('Error saving skills:', error);
+          alert('Failed to save skills. Please try again.');
+        }
+      };
+//     {
+//     await setDoc(bioRef, { content: bio });
+//     alert('Bio updated successfully!');
+//   };
 
   return (
     <div>
