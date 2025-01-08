@@ -3,6 +3,8 @@ import React from 'react';
 import BioEditor from './bioEditor';
 import ProjectsEditor from './projectsEditor';
 import SkillsEditor from './skillsEditor';
+// require('dotenv').config();
+
 
 
 

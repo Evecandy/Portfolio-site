@@ -4,6 +4,7 @@ import Bio from './bio';
 import Projects from './projects';
 import Skills from './skills';
 
+// require('dotenv').config();
 
 
 function PublicView() {

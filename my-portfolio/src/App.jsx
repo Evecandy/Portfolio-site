@@ -6,6 +6,8 @@ import Login from "./components/auth/login";
 import PublicView from "./components/publicView";
 import "./App.css";
 import AdminDashboard from "./components/admin/dashboard";
+// require('dotenv').config();
+
 
 function App() {
   return (
