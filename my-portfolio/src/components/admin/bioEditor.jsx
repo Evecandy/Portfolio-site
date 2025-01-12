@@ -3,56 +3,60 @@ import { db } from "../../firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const BioEditor = () => {
-  const [bio, setBio] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [bio, setBio] = useState(""); // Bio state
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
+  // Fetch bio on component mount
   useEffect(() => {
     const fetchBio = async () => {
       try {
-        const bioRef = doc(db, "portfolio", "bio"); // Reference to the 'bio' document
-        const bioDoc = await getDoc(bioRef); // Fetch the document
+        const bioRef = doc(db, "portfolio", "bio");
+        const bioDoc = await getDoc(bioRef);
+
         if (bioDoc.exists()) {
-          setBio(bioDoc.data().content || ""); // Set the bio content in state
+          setBio(bioDoc.data().content || ""); // Set fetched bio
+        } else {
+          console.warn("Bio document does not exist.");
         }
       } catch (error) {
         console.error("Error fetching bio:", error);
-        alert("Failed to fetch bio. Please try again.");
+        alert("Failed to load bio. Please try again.");
       } finally {
-        setIsLoading(false); // Update the loading status
+        setIsLoading(false); // Stop loading spinner
       }
     };
 
     fetchBio();
   }, []);
 
+  // Save bio when the user clicks save
   const handleSave = async () => {
     try {
-      const bioRef = doc(db, "portfolio", "bio"); // Reference to the 'bio' document
-      await setDoc(bioRef, { content: bio }); // Save the bio content
+      const bioRef = doc(db, "portfolio", "bio"); // Reference to Firestore document
+      await setDoc(bioRef, { content: bio }); // Save bio content
       alert("Bio updated successfully!");
     } catch (error) {
       console.error("Error saving bio:", error);
       alert("Failed to save bio. Please try again.");
     }
   };
-  //     {
-  //     await setDoc(bioRef, { content: bio });
-  //     alert('Bio updated successfully!');
-  //   };
 
   return (
     <div>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-      <>
-        <textarea 
-            value={bio} 
-            onChange={(e) => setBio(e.target.value)} 
+        <div>
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)} // Update state as user types
             placeholder="Edit your bio here"
+            rows={6}
+            cols={40}
           />
+          <br />
           <button onClick={handleSave}>Save Bio</button>
-      </>
+        </div>
       )}
     </div>
   );

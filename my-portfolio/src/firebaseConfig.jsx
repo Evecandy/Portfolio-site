@@ -8,7 +8,6 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyBx4d65o26E5pns1Lyek1ugLAOzJXyPhHY",
   authDomain: "portfolio-site-86869.firebaseapp.com",
@@ -26,6 +25,7 @@ const analytics = getAnalytics(app);
 //Initialize firestore
 const db = getFirestore(app);
   // console.log('db')
+  
 
 
 export { db };
