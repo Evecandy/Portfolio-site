@@ -46,9 +46,15 @@ const SkillsEditor = () => {
         <p> Loading...</p>
       ) : (
         <>
-      <textarea value={skills} onChange={(e) => setSkills(e.target.value)} />
-      <button onClick={handleSave}>Save Skills</button>
-      </>
+          <textarea
+            value={skills}
+            onChange={(e) => setSkills(e.target.value)}
+            placeholder="Edit your skills here"
+            rows={6}
+            cols={40}
+          />
+          <button onClick={handleSave}>Save Skills</button>
+        </>
       )}
     </div>
   );

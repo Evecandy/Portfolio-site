@@ -49,6 +49,9 @@ const ProjectsEditor = () => {
       <textarea
         value={projects}
         onChange={(e) => setProjects(e.target.value)}
+        placeholder="Edit your projects here"
+        rows={6}
+        cols={40}
       />
       <button onClick={handleSave}>Save Projects</button>
       </>
